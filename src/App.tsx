@@ -1,12 +1,12 @@
-import { useState } from 'react'
+import { useState, ChangeEvent } from 'react'
 import './App.css'
 
-function App() {
-  const [dolares, setDolares] = useState('')
+function App(): JSX.Element {
+  const [dolares, setDolares] = useState<string>('')
   const tasaCambio = 6.96 // 1 USD = 6.96 BOB (Bolivianos)
   const tasaCambioParalelo = 16.60 // Cotización paralela actual
 
-  const convertirABolivianos = (usd, tasa) => {
+  const convertirABolivianos = (usd: string, tasa: number): string => {
     const cantidad = parseFloat(usd)
     if (isNaN(cantidad)) return ''
     return (cantidad * tasa).toFixed(2)
@@ -22,7 +22,7 @@ function App() {
             <input
               type="number"
               value={dolares}
-              onChange={(e) => setDolares(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>) => setDolares(e.target.value)}
               placeholder="Ingrese cantidad en dólares"
             />
           </label>
